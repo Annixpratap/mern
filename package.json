@@ -1,0 +1,27 @@
+{
+  "name": "mern-projects",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev" : " nodemon api/index.js",
+    "start" : "node api/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Annixpratap/mern.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Annixpratap/mern/issues"
+  },
+  "homepage": "https://github.com/Annixpratap/mern#readme",
+  "dependencies": {
+    "express": "^4.21.2",
+    "nodemon": "^3.1.9"
+  }
+}
