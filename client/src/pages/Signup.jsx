@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link ,useNavigate} from 'react-router-dom';
 
 export default function Signup() {
   const [formdata, setformdata] = useState({
@@ -40,6 +40,7 @@ export default function Signup() {
     } finally {
       setLoading(false);  // Stop the loading spinner once the request is completed
     }
+    navigate('/signin');  // Navigate to the login page after successful signup
   };
 
   return (
