@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { signinstart,signinsuccess,signinfail } from '../redux/User/userslice';
+import { useDispatch } from 'react-redux';
 
 export default function Signin() {
   const [formdata, setformdata] = useState({
@@ -10,6 +12,7 @@ export default function Signin() {
   const [error, setError] = useState(null);  // State to track errors
   const [loading, setLoading] = useState(false);  // State to track loading state
   const navigate = useNavigate();
+  const dispatch = useDispatch(); 
 
   const handlechange = (e) => {
     setformdata({ ...formdata, [e.target.id]: e.target.value });
@@ -19,6 +22,7 @@ export default function Signin() {
     e.preventDefault();
     setLoading(true);  // Set loading to true when the request starts
     setError(null);  // Reset the error state before the new request
+    dispatch(signinstart()); 
     try {
       const res = await fetch('/api/auth/signin', {
         method: 'POST',
@@ -33,11 +37,14 @@ export default function Signin() {
       //   throw new Error('Signup failed. Please try again.');  // Throw error if signup fails
       // }
 
-      const data = await res.json();  // Handle successful response
+      const data = await res.json();
+      
+      dispatch(signinsuccess(data));// Handle successful response
       // You can use this data as needed
     } catch (error) {
       console.error('Error:', error);
       setError(error.message); 
+      dispatch(signinfail(error.message));
        // Set the error state with the error message
     } finally {
       setLoading(false);  // Stop the loading spinner once the request is completed
